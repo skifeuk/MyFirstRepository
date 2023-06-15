@@ -1,1 +1,1 @@
-# MyFirstRepository
+## Конфликтная строка
