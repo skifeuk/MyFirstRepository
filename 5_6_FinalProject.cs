@@ -67,16 +67,16 @@ class Program
 
     static string StringInput(string text)
     {
-        bool iscorrect;
+        bool iscorrect;        
         string tempinput;
         int temp;
         do
         {
             Console.WriteLine(text);
             tempinput = Console.ReadLine();
-            iscorrect = int.TryParse(tempinput, out temp); 
+            iscorrect = int.TryParse(tempinput, out temp);            
         }
-        while (iscorrect);
+        while (iscorrect || tempinput.Contains(" ") || tempinput.Contains(""));
 
         string input = tempinput;
 
