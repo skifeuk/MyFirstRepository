@@ -12,34 +12,23 @@ class Program
 
 
     static (string Name, string LastName, int Age, string[] Pets, string[] Colors) DataInput()
-    {
-        Console.WriteLine("Введите своё имя:");
-        string Name = StringInput();
-
-        Console.WriteLine("Введите свою фамилию:");
-        string LastName = StringInput();
-
-        Console.WriteLine("Введите свой возраст:");
-        int Age = IntInput();
-
-        Console.WriteLine("Сколько у Вас питомцев?");
-        int NumOfPets = IntInput();
+    {        
+        string Name = StringInput("Введите своё имя:");
+        string LastName = StringInput("Введите свою фамилию:");
+        int Age = IntInput("Введите свой возраст:");
         
+        int NumOfPets = IntInput("Сколько у Вас питомцев?");        
         string[] Pets = new string[NumOfPets];
         for (int i = 0; i < NumOfPets; i++)
         {
-            Console.WriteLine("Введите имя питомца {0}:", i + 1);
-            Pets[i] = StringInput();
+            Pets[i] = StringInput("Введите имя питомца " + (i + 1));
         }
-
-        Console.WriteLine("Сколько у Вас юбимых цветов?");
-        int NumOfColors = IntInput();
-        
+                
+        int NumOfColors = IntInput("Сколько у Вас любимых цветов?");        
         string[] Colors = new string[NumOfColors];
         for (int i = 0; i < NumOfColors; i++)
-        {
-            Console.WriteLine("Введите люимый цвет {0}:", i + 1);
-            Colors[i] = StringInput();
+        {            
+            Colors[i] = StringInput("Введите любимый цвет " + (i + 1));
         }
 
         return (Name, LastName, Age, Pets, Colors);
@@ -63,35 +52,29 @@ class Program
 
     }
 
-    static int IntInput()
+    static int IntInput(string text)
     {
         bool iscorrect;
         int input;
         do
-        {            
+        {
+            Console.WriteLine(text);
             iscorrect = int.TryParse(Console.ReadLine(), out input);
-            if (!iscorrect)
-            {
-                Console.WriteLine("Ошибка. Введите число больше нуля:");
-            }
         }
         while (!iscorrect && input <= 0);
         return (input);
     }
 
-    static string StringInput()
+    static string StringInput(string text)
     {
         bool iscorrect;
         string tempinput;
         int temp;
         do
-        {            
+        {
+            Console.WriteLine(text);
             tempinput = Console.ReadLine();
-            iscorrect = int.TryParse(tempinput, out temp);
-            if (iscorrect)
-            {
-                Console.WriteLine("Ошибка. Цифры не допускаются. Повторите ввод:");
-            }
+            iscorrect = int.TryParse(tempinput, out temp); 
         }
         while (iscorrect);
 
