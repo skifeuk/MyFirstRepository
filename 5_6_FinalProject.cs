@@ -76,7 +76,7 @@ class Program
             tempinput = Console.ReadLine();
             iscorrect = int.TryParse(tempinput, out temp);            
         }
-        while (iscorrect || tempinput.Contains(" ") || tempinput.Contains(""));
+        while (iscorrect || tempinput.Contains(" ")/* || tempinput.Contains("")*/);
 
         string input = tempinput;
 
