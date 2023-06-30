@@ -5,17 +5,21 @@ class Program
 {
     public static void Main(string[] args)
     {
+        
         (string Name, string LastName, int Age, string[] Pets, string[] Colors) Person = DataInput();
         
         DataOutput(Person.Name, Person.LastName, Person.Age, Person.Pets, Person.Colors);
     }
 
 
-
+    //Метод собирает информацию о пользователе и возвращает Имя, Фамилию, Возраст, Имена питомцев (массивом) и Любимые цета (массивом)
     static (string Name, string LastName, int Age, string[] Pets, string[] Colors) DataInput()
     {        
+        
         string Name = StringInput("Введите своё имя:");
+        
         string LastName = StringInput("Введите свою фамилию:");
+        
         int Age = IntInput("Введите свой возраст:");
 
         string[] Pets = HavePets();
@@ -29,6 +33,8 @@ class Program
 
         return (Name, LastName, Age, Pets, Colors);
     }
+
+    //Метод принимает на вход собранную информацию о пользователе и выводит её в консоль
     static void DataOutput(string Name, string LastName, int Age, string[] Pets, string[] Colors)
     {
         Console.WriteLine("Ваши имя и фамилия: {0} {1}", Name, LastName);
@@ -48,6 +54,7 @@ class Program
 
     }
 
+    //Метод проверяет что введено число и оно больше нуля. Иначе просит повторить ввод.
     static int IntInput(string text)
     {
         bool iscorrect;
@@ -61,6 +68,7 @@ class Program
         return (input);
     }
 
+    //Метод проверяет что введенная строка не пустая, не начинается с пробела или цифры. Иначе просит повторить ввод.
     static string StringInput(string text)
     {
         bool iscorrect;        
@@ -72,13 +80,14 @@ class Program
             tempinput = Console.ReadLine();
             iscorrect = int.TryParse(tempinput, out temp);            
         }
-        while (iscorrect || tempinput.Contains(" ")/* || tempinput.Contains("")*/);
+        while (iscorrect || string.IsNullOrWhiteSpace(tempinput));
 
         string input = tempinput;
 
         return (input);
     }
 
+    //Метод спрашивает есть ли питомцы или нет. Возвращает массив с именами питомцев или заготовленным текстом в виде массива строк. Проверяет что введен ответ "да" или "нет", иначе просит повторить ввод. Если да, то спрашивает количество питомцев и имена. Если нет, то выводит заготовленный текст.
     static string[] HavePets()
     {
         repeat:
