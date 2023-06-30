@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
@@ -16,13 +17,8 @@ class Program
         string Name = StringInput("Введите своё имя:");
         string LastName = StringInput("Введите свою фамилию:");
         int Age = IntInput("Введите свой возраст:");
-        
-        int NumOfPets = IntInput("Сколько у Вас питомцев?");        
-        string[] Pets = new string[NumOfPets];
-        for (int i = 0; i < NumOfPets; i++)
-        {
-            Pets[i] = StringInput("Введите имя питомца " + (i + 1));
-        }
+
+        string[] Pets = HavePets();
                 
         int NumOfColors = IntInput("Сколько у Вас любимых цветов?");        
         string[] Colors = new string[NumOfColors];
@@ -81,5 +77,31 @@ class Program
         string input = tempinput;
 
         return (input);
+    }
+
+    static string[] HavePets()
+    {
+        repeat:
+        string HavePets = StringInput("Есть ли у Вас питомцы? (да/нет):");        
+        if (HavePets is "да")
+        {
+            int NumOfPets = IntInput("Сколько у Вас питомцев?");
+            string[] Pets = new string[NumOfPets];
+            for (int i = 0; i < NumOfPets; i++)
+            {
+                Pets[i] = StringInput("Введите имя питомца " + (i + 1));
+            }
+
+            return Pets;
+        }
+        else if (HavePets is "нет")
+        {
+            string[] Pets = new string[] { "У Вас нет питомцев :`(" };
+            return Pets;
+        }
+        else
+        {
+            goto repeat;
+        }
     }
 }
